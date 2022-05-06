@@ -13,13 +13,24 @@ namespace CreditCardValidation
             do
             {
                 int tot = 0;
-                for (int i = 0; i < 16; i++)
+                for (int i = 0; i < PAN.Length; i++)
                 {
                     PAN[i] = rand.Next(0, 10);
                     strPAN += PAN[i].ToString();
                     //Console.WriteLine(PAN[i]);
                     if (i % 2 == 0)
-                        tot += 2 * PAN[i];
+                    {
+                        int x2 = 2 * PAN[i];
+                        if(x2 > 9)
+                        {
+                            /*string magg = x2.ToString();
+                            int somma = Convert.ToInt32(magg[0].ToString()) + Convert.ToInt32(magg[1].ToString());*/
+                            int somma = x2 - 9;
+                            tot += somma;
+                        }
+                        else
+                            tot += x2;
+                    }
                     else
                         tot += PAN[i];
                 }
